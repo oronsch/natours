@@ -1,0 +1,50 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+
+*,
+*::after,
+*::before {
+  margin: 0;            // Removes default margin for all elements and pseudo-elements.
+  padding: 0;           // Removes default padding for all elements and pseudo-elements.
+  box-sizing: inherit;  // Inherits the `box-sizing` property from the parent element (set on `body`).
+}
+
+
+html {
+  // This defines what 1rem is
+  font-size: 62.5%; //1 rem = 10px; 10px/16px = 62.5%
+
+  @include respond(tab-land) {
+    // width < 1200?
+    font-size: 56.25%; //On tablet landscape, 1rem = 9px, 9/16 = 50%
+  }
+
+  @include respond(tab-port) {
+    // width < 900?
+    font-size: 50%; //On tablet portrait, 1rem = 8px, 8/16 = 50%
+  }
+  @include respond(phone) {
+    // width < 900?
+    font-size: 40%; // On phones, 1rem = 8px, 8/16 = 50%
+  }
+
+  @include respond(big-desktop) {
+    font-size: 75%; /// On large screens, 1rem = 12, 12/16
+  }
+}
+
+body {
+  box-sizing: border-box; // Ensures the element’s width/height includes padding and borders.
+  padding: 3rem;          // Adds padding to the body content.
+
+  @include respond(tab-port) {
+    padding: 0;           // Removes padding on smaller devices for better space utilization.
+  }
+}
+
+
+::selection {
+  background-color: $color-primary; // Highlights text with the primary color when selected.
+  color: $color-white;             // Changes the text color to white for contrast.
+}
+

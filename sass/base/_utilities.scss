@@ -1,0 +1,34 @@
+@use "../abstracts/mixins" as *;
+
+.u-center-text {
+  text-align: center !important; // Forces text to align center.
+}
+
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem !important; // Adds a small bottom margin.
+}
+
+.u-margin-bottom-medium {
+  margin-bottom: 4rem !important; // Adds a medium bottom margin.
+
+  @include respond(tab-port) {
+    margin-bottom: 3rem !important; // Reduces margin for tablet portrait screens.
+  }
+}
+
+.u-margin-bottom-big {
+  margin-bottom: 8rem !important; // Adds a large bottom margin.
+
+  @include respond(tab-port) {
+    margin-bottom: 5rem !important; // Reduces margin for tablet portrait screens.
+  }
+}
+
+.u-margin-top-big {
+  margin-top: 8rem !important; // Adds a large top margin.
+}
+
+.u-margin-top-huge {
+  margin-top: 10rem !important; // Adds a huge top margin.
+}
+

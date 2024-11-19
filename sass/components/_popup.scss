@@ -1,0 +1,136 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+
+.popup {
+  // Full viewport size and fixed positioning to cover the entire screen.
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  // Semi-transparent black background with a blur effect for the popup overlay.
+  background-color: rgba($color-black, 0.8);
+  z-index: 9999; // Ensures the popup appears above other elements.
+  opacity: 0; // Initially hidden.
+  visibility: hidden;
+  transition: all 0.3s; // Smooth transition for opening/closing.
+
+  backdrop-filter: blur(10px); // Adds a blur effect behind the popup.
+  background-color: rgba($color-black, 0.3); // Adjusted semi-transparent background.
+
+  &__content {
+    @include absCenter; // Centers the content using a predefined mixin.
+    width: 75%; // Sets the content width to 75% of the viewport.
+    background-color: $color-white; // White background for the content box.
+    box-shadow: 0 2rem 4rem rgba($color-black, 0.2); // Subtle shadow for a floating effect.
+    border-radius: 3px; // Slightly rounded corners.
+    display: table; // Table layout for internal alignment.
+    overflow: hidden; // Hides content outside the box.
+    opacity: 0; // Initially hidden.
+    transform: translate(-50%, -50%) scale(0.25); // Starts minimized and centered.
+    transition: all 0.5s 0.2s; // Smooth transition for scaling and opacity.
+  }
+
+  &__left {
+    // Left section of the popup, taking up one-third of the width.
+    width: 33.333333%;
+    display: table-cell; // Table cell layout for alignment.
+    vertical-align: middle; // Centers content vertically.
+  }
+
+  &__right {
+    // Right section of the popup, taking up two-thirds of the width.
+    width: 66.6666667%;
+    display: table-cell; // Table cell layout for alignment.
+    vertical-align: middle; // Centers content vertically.
+    padding: 3rem 5rem; // Adds padding inside the section.
+  }
+
+  &__img {
+    // Styles for an image inside the popup.
+    display: block; // Ensures the image is displayed as a block element.
+    width: 100%; // Makes the image responsive to the section width.
+    height: 40vh; // Limits the height to 40% of the viewport height.
+  }
+
+  &__text {
+    // Text styling for the popup content.
+    font-size: 1.4rem; // Sets the font size.
+    margin-bottom: 4rem; // Adds space below the text block.
+    column-count: 2; // Splits the text into two columns.
+    column-gap: 4rem; // Adds space between the columns.
+    column-rule: 1px solid $color-grey-light-2; // Adds a line between the columns.
+    hyphens: auto; // Automatically hyphenates long words for better layout.
+  }
+
+  // Styles for when the popup is in an open state (via the `:target` pseudo-class).
+  &:target {
+    opacity: 1; // Fully visible.
+    visibility: visible; // Removes `hidden` property.
+  }
+
+  &:target &__content {
+    opacity: 1; // Fully visible content.
+    transform: translate(-50%, -50%) scale(1); // Resets the scaling to full size.
+  }
+
+  &__close {
+    // Close button styles.
+    &:link,
+    &:visited {
+      color: $color-grey-dark; // Default button color.
+      position: absolute; // Positioned in the top-right corner of the popup.
+      top: 2.5rem;
+      right: 2.5rem;
+      font-size: 3rem; // Large font size for visibility.
+      text-decoration: none; // Removes underline.
+      display: inline-block; // Inline-block for easier positioning.
+      transition: all 0.2s; // Smooth color transition on hover.
+      line-height: 1; // Prevents extra spacing within the button.
+    }
+
+    &:hover {
+      color: $color-primary; // Changes color on hover for interactivity.
+    }
+  }
+
+  // Responsive adjustments for tablets (landscape mode).
+  @include respond(tab-land) {
+    &__content::before {
+      // Adds a background image overlay inside the content box for tablets.
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-image: url("/img/nat-3.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -1; // Ensures the image stays behind other content.
+      opacity: 0.2; // Faint overlay effect.
+    }
+
+    &__left {
+      display: none; // Hides the left section on tablets.
+    }
+
+    &__right {
+      width: 100%; // Makes the right section take up the full width.
+    }
+
+    &__img {
+      display: none; // Hides images inside the popup.
+    }
+  }
+
+  // Responsive adjustments for phones.
+  @include respond(phone) {
+    &__text {
+      column-count: 1; // Reduces text to a single column for smaller screens.
+      hyphens: auto; // Retains automatic word breaking.
+    }
+  }
+}

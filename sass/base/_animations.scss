@@ -1,0 +1,46 @@
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;                       // Element is fully transparent at the start.
+        transform: translateX(-10rem);    // Element is positioned 10rem to the left of its initial position.
+    }
+
+    80% {
+        transform: translateX(1rem);      // Element overshoots slightly to the right for a bounce effect.
+    }
+
+    100% {
+        opacity: 1;                       // Element is fully visible at the end.
+        transform: translate(0);          // Element is back in its original position.
+    }
+}
+
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;                       // Element starts as fully transparent.
+        transform: translateX(10rem);     // Element is positioned 10rem to the right of its initial position.
+    }
+
+    80% {
+        transform: translateX(-1rem);     // Element overshoots slightly to the left for a bounce effect.
+    }
+
+    100% {
+        opacity: 1;                       // Element is fully visible.
+        transform: translate(0);          // Element returns to its original position.
+    }
+}
+
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;                       // Element starts as fully transparent.
+        transform: translateY(3rem);      // Element is positioned 3rem below its initial position.
+    }
+
+    100% {
+        opacity: 1;                       // Element is fully visible.
+        transform: translate(0);          // Element returns to its original position.
+    }
+}
+

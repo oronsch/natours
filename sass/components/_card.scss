@@ -1,0 +1,228 @@
+@use "../abstracts/variables" as *;
+
+.card {
+  // FUNCTIONALITY
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+  position: relative;
+  height: 52rem;
+
+ &__side {
+  height: 52rem;                     // Matches the height of the card container.
+  transition: all 0.8s ease;         // Smooth transition for flip animation.
+  position: absolute;                // Ensures the sides are stacked in the same position.
+  top: 0;
+  left: 0;
+  width: 100%;                       // Makes the sides cover the entire card.
+  backface-visibility: hidden;       // Hides the back of each side during rotation.
+  border-radius: 3px;                // Rounds the edges of the card.
+  overflow: hidden;                  // Prevents content overflow.
+  box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15); // Subtle shadow for depth.
+
+  &--front {
+    background-color: $color-white;  // Sets the front side to white.
+  }
+
+  &--back {
+    transform: rotateY(180deg);      // Positions the back side rotated by 180 degrees.
+
+    &-1 {
+      background-image: linear-gradient(
+        to right bottom,
+        $color-secondary-light,
+        $color-secondary-dark
+      );                             // Gradient for back side 1.
+    }
+
+    &-2 {
+      background-image: linear-gradient(
+        to right bottom,
+        $color-primary-light,
+        $color-primary-dark
+      );                             // Gradient for back side 2.
+    }
+
+    &-3 {
+      background-image: linear-gradient(
+        to right bottom,
+        $color-tertiary-light,
+        $color-tertiary-dark
+      );                             // Gradient for back side 3.
+    }
+  }
+}
+
+ &:hover &__side--front {
+  transform: rotateY(-180deg);       // Flips the front side backward on hover.
+}
+
+&:hover &__side--back {
+  transform: rotateY(0);            // Flips the back side into view on hover.
+}
+
+  // FRONT SIDE STYLING
+ &__picture {
+  background-size: cover;           // Ensures the background image covers the entire area.
+  height: 23rem;                    // Sets the picture height.
+  background-blend-mode: screen;    // Blends the background image and gradient.
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); // Creates a unique clipped shape.
+  border-top-left-radius: 3px;      // Rounds the top-left corner.
+  border-top-right-radius: 3px;     // Rounds the top-right corner.
+
+  &--1 {
+    background-image: linear-gradient(
+        to right bottom,
+        $color-secondary-light,
+        $color-secondary-dark
+      ),
+      url(../img/nat-5.jpg);        // Combines gradient and image for card 1.
+  }
+
+  &--2 {
+    background-image: linear-gradient(
+        to right bottom,
+        $color-primary-light,
+        $color-primary-dark
+      ),
+      url(../img/nat-6.jpg);        // Combines gradient and image for card 2.
+  }
+
+  &--3 {
+    background-image: linear-gradient(
+        to right bottom,
+        $color-tertiary-light,
+        $color-tertiary-dark
+      ),
+      url(../img/nat-7.jpg);        // Combines gradient and image for card 3.
+  }
+}
+
+&__heading {
+  font-size: 2.8rem;                // Large font size for the heading.
+  font-weight: 300;                 // Light font weight.
+  text-transform: uppercase;        // Converts text to uppercase.
+  text-align: right;                // Aligns text to the right.
+  color: $color-white;              // Sets the text color to white.
+  position: absolute;               // Positions the heading inside the card.
+  top: 12rem;                       // Sets vertical position.
+  right: 2rem;                      // Sets horizontal position.
+  width: 75%;                       // Restricts the heading width.
+}
+
+&__heading-span {
+  padding: 1rem 1.5rem;             // Adds padding around the heading text.
+  box-decoration-break: clone;      // Ensures the background gradient breaks correctly across lines.
+
+  &--1 {
+    background-image: linear-gradient(
+      to right bottom,
+      rgba($color-secondary-light, 0.85),
+      rgba($color-secondary-dark, 0.85)
+    );  // Gradient for heading span 1.
+  }
+
+  &--2 {
+    background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.85),
+      rgba($color-primary-dark, 0.85)
+    );  // Gradient for heading span 2.
+  }
+
+  &--3 {
+    background-image: linear-gradient(
+      to right bottom,
+      rgba($color-tertiary-light, 0.85),
+      rgba($color-tertiary-dark, 0.85)
+    );  // Gradient for heading span 3.
+  }
+}
+
+&__details {
+  padding: 3rem;                   // Adds padding inside the details section.
+
+  ul {
+    list-style: none;              // Removes bullet points from the list.
+    width: 80%;                    // Limits the width of the list.
+    margin: 0 auto;                // Centers the list horizontally.
+
+    li {
+      text-align: center;          // Centers list items.
+      font-size: 1.5rem;           // Sets font size.
+      padding: 1rem;               // Adds padding between items.
+
+      &:not(:last-child) {
+        border-bottom: 1px solid $color-grey-light-2; // Adds a divider between items.
+      }
+    }
+  }
+}
+
+  // FRONT SIDE STYLING
+&__cta {
+  position: absolute;               // Centers the call-to-action inside the card.
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); // Perfect centering.
+  width: 90%;                       // Restricts width to 90%.
+  text-align: center;               // Centers text inside.
+}
+
+&__price-box {
+  text-align: center;               // Centers the pricing box.
+  color: $color-white;              // Sets text color to white.
+  margin-bottom: 8rem;              // Adds spacing below the price box.
+}
+
+&__price-only {
+  font-size: 1.4rem;                // Small font size for "Only" text.
+  text-transform: uppercase;        // Converts text to uppercase.
+}
+
+&__price-value {
+  font-size: 6rem;                  // Large font size for the price value.
+  font-weight: 100;                 // Light font weight for a clean look.
+}
+
+
+  //@include respond(tab-port) {
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+  height: auto;                     // Adjusts height for smaller screens.
+  border-radius: 3px;
+  background-color: $color-white;   // Sets background to white.
+  box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+
+  &__side {
+    height: auto;
+    position: relative;             // Resets position for smaller screens.
+    box-shadow: none;
+
+    &--back {
+      transform: rotateY(0);        // Disables flipping on hover for touch devices.
+      clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
+    }
+  }
+
+  &__details {
+    padding: 1rem 3rem;             // Reduces padding for smaller screens.
+  }
+
+  &__cta {
+    position: relative;             // Resets position for smaller screens.
+    top: 0;
+    left: 0;
+    transform: translate(0);
+    width: 100%;
+    padding: 7rem 4rem 4rem 4rem;   // Adjusts padding for smaller screens.
+  }
+
+  &__price-box {
+    margin-bottom: 3rem;            // Reduces spacing below the price box.
+  }
+
+  &__price-value {
+    font-size: 4rem;                // Reduces font size for smaller screens.
+  }
+}
+
+}

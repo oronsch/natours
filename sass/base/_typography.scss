@@ -1,0 +1,92 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+
+body {
+  font-family: "Lato", sans-serif;   // Sets the global font family to Lato with a fallback to sans-serif.
+  font-weight: 400;                 // Default font weight for body text.
+  line-height: 1.7;                 // Sets line spacing for better readability.
+  color: $color-grey-dark;          // Default text color is a medium grey.
+}
+
+
+.heading-primary {
+  color: $color-white;              // White text color for the primary heading.
+  text-transform: uppercase;        // Converts text to uppercase.
+  backface-visibility: hidden;      // Ensures smooth animation without rendering issues.
+  margin-bottom: 6rem;              // Adds spacing below the heading.
+
+  &--main {
+    display: block;                 // Ensures the heading spans the full width.
+    font-size: 6rem;                // Large font size for the main heading.
+    font-weight: 400;               // Normal font weight for a clean look.
+    letter-spacing: 3.5rem;         // Adds significant spacing between letters for a bold effect.
+
+    // Animation for the main heading
+    animation-name: moveInLeft;     // Animates the heading to slide in from the left.
+    animation-duration: 1s;         // Animation lasts for 1 second.
+    animation-timing-function: ease-out; // Smooth deceleration for a natural effect.
+
+    @include respond(phone) {
+      letter-spacing: 1rem;         // Reduces spacing for smaller screens.
+      font-family: 5rem;            // Adjusts font size for better readability on phones.
+    }
+  }
+
+  &--sub {
+    display: block;                 // Ensures the subheading spans the full width.
+    font-size: 2rem;                // Smaller font size for the subheading.
+    font-weight: 700;               // Bold font weight for emphasis.
+    letter-spacing: 1.75rem;        // Adds slight spacing between letters.
+    animation: moveInRight 1s ease-out; // Slides in from the right with a smooth effect.
+
+    @include respond(phone) {
+      letter-spacing: 0.5rem;       // Reduces spacing for smaller screens.
+    }
+  }
+}
+
+
+.heading-secondary {
+  font-size: 3.5rem;                // Default font size for the secondary heading.
+  text-transform: uppercase;        // Converts text to uppercase.
+  font-weight: 700;                 // Bold font weight for emphasis.
+  display: inline-block;            // Allows the heading to sit inline with other elements.
+  background-image: linear-gradient(
+    to right,
+    $color-primary-light,
+    $color-primary-dark
+  );                               // Applies a gradient to the text.
+  background-clip: text;            // Clips the gradient to the text.
+  color: transparent;               // Makes the text background (gradient) visible.
+  letter-spacing: 0.2rem;           // Adds slight spacing between letters.
+  transition: all 0.2s;             // Smooth transition for hover effects.
+
+  @include respond(tab-port) {
+    font-size: 3rem;                // Reduces font size on tablets.
+  }
+
+  @include respond(phone) {
+    font-size: 2.5rem;              // Reduces font size further on phones.
+  }
+
+  &:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1); // Adds dynamic hover effect.
+    text-shadow: 0.5rem 1rem 2rem rgba($color-black, 0.2); // Adds a subtle shadow.
+  }
+}
+
+
+.heading-tertiary {
+  font-size: $default-font-size;    // Uses the default font size (1.6rem).
+  font-weight: 700;                // Bold font weight for emphasis.
+  text-transform: uppercase;       // Converts text to uppercase.
+}
+
+
+.paragraph {
+  font-size: $default-font-size;    // Uses the default font size for body text.
+
+  &:not(:last-child) {
+    margin-bottom: 3rem;           // Adds spacing between multiple paragraphs, except the last one.
+  }
+}

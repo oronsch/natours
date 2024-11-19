@@ -1,0 +1,81 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+
+.story {
+  width: 75%; // Sets the story container width to 75% of the parent.
+  margin: 0 auto; // Centers the story container horizontally.
+  box-shadow: 0 3rem 6rem rgba($color-black, 0.1); // Adds a soft shadow for depth.
+  background-color: rgba($color-white, 0.6); // Semi-transparent white background for a light effect.
+  border-radius: 3px; // Rounds the corners slightly.
+  padding: 6rem; // Adds internal spacing.
+  padding-left: 9rem; // Adds extra left padding for visual alignment.
+  font-size: $default-font-size; // Sets the font size to the default variable.
+  transform: skewX(-12deg); // Applies a skew effect for a dynamic look.
+
+  @include respond(tab-port) {
+    width: 100%; // Makes the story container full-width on tablet portrait screens.
+    padding: 4rem; // Reduces padding for smaller screens.
+    padding-left: 7rem; // Adjusts left padding.
+  }
+
+  @include respond(phone) {
+    transform: skewX(0); // Removes skew effect on phones for simplicity.
+  }
+
+  &__shape {
+    width: 15rem; // Sets the shape width.
+    height: 15rem; // Sets the shape height.
+    float: left; // Aligns the shape to the left of the text.
+    transform: translateX(-3rem) skewX(12deg); // Shifts and skews the shape for a dynamic layout.
+    position: relative; // Ensures child elements are positioned relative to this shape.
+    overflow: hidden; // Hides overflow content for clean visuals.
+    border-radius: 50%; // Ensures the shape is circular.
+    clip-path: circle(50% at 50% 50%); // Ensures only the circular part is visible.
+    shape-outside: circle(50% at 50% 50%); // Allows text to flow around the circular shape.
+
+    @include respond((phone) and (tab-port)) {
+      transform: translateX(-3rem) skewX(0); // Removes skew for smaller screens.
+      width: 10rem; // Reduces shape size for phones and tablets.
+      height: 10rem;
+    }
+  }
+
+  &__img {
+    height: 100%; // Makes the image fill the parent shape vertically.
+    transform: translateX(-4rem) scale(1.4); // Scales and shifts the image for an artistic effect.
+    backface-visibility: hidden; // Prevents rendering of the back during transformations.
+    transition: all 0.5s; // Smooth transition for hover effects.
+  }
+
+  &__text {
+    transform: skewX(12deg); // Skews the text for alignment with the container.
+
+    @include respond((phone) and (tab-port)) {
+      transform: skewX(0); // Removes skew for smaller screens.
+    }
+  }
+
+  &__caption {
+    position: absolute; // Positions the caption inside the circular shape.
+    top: 50%; // Centers the caption vertically.
+    left: 50%; // Centers the caption horizontally.
+    transform: translate(-50%, 20%); // Adjusts positioning slightly below the center.
+    color: $color-white; // Sets the caption text color to white.
+    text-transform: uppercase; // Converts text to uppercase for emphasis.
+    font-size: 1.7rem; // Sets a readable font size for the caption.
+    text-align: center; // Centers the text.
+    opacity: 0; // Initially hides the caption.
+    transition: all 0.5s; // Smooth transition for hover effects.
+    backface-visibility: hidden; // Prevents rendering of the back during transformations.
+  }
+
+  &:hover &__caption {
+    opacity: 1; // Makes the caption visible on hover.
+    transform: translate(-50%, -50%); // Centers the caption within the shape.
+  }
+
+  &:hover &__img {
+    transform: translateX(-4rem) scale(1); // Resets the image scaling for focus.
+    filter: blur(3px) brightness(80%); // Adds a blur and dims the image slightly.
+  }
+}

@@ -1,0 +1,176 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+
+.navigation {
+  &__checkbox {
+    display: none; // Hides the checkbox visually while still allowing functionality.
+  }
+
+  &__button {
+    background-color: $color-white;
+    height: 7rem;
+    width: 7rem;
+    position: fixed;
+    top: 6rem;
+    right: 6rem;
+    border-radius: 50%; // Creates a circular button.
+    z-index: 2000; // Ensures the button is above most elements.
+    box-shadow: 0 1rem 3rem rgba($color-black, 0.1); // Adds a soft shadow.
+    text-align: center;
+    cursor: pointer;
+
+    @include respond(tab-port) {
+      top: 4rem;
+      right: 4rem;
+    }
+
+    @include respond(phone) {
+      top: 3rem;
+      right: 3rem;
+    }
+  }
+
+  &__background {
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+    position: fixed;
+    top: 6.5rem;
+    right: 6.5rem;
+    background-image: radial-gradient($color-primary-light,
+        $color-primary-dark );
+    z-index: 1000;
+    transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+
+    @include respond(tab-port) {
+      top: 4.5rem;
+      right: 4.5rem;
+    }
+
+    @include respond(phone) {
+      top: 3.5rem;
+      right: 3.5rem;
+    }
+  }
+
+  &__nav {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1500;
+
+    opacity: 0; // Initially hidden.
+    width: 0; // Collapsed width by default.
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55); // Smooth transition.
+  }
+
+  &__list {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); // Centers the list horizontally and vertically.
+    list-style: none; // Removes default bullet points.
+    text-align: center;
+    width: 100%;
+  }
+
+  &__item {
+    margin: 1rem; // Adds spacing between navigation items.
+  }
+
+  &__link {
+
+    &:link,
+    &:visited {
+      display: inline-block;
+      font-size: 3rem; // Large font size for readability.
+      font-weight: 300;
+      padding: 1rem 2rem; // Adds padding around links.
+      color: $color-white;
+      text-decoration: none; // Removes default underline styling.
+      text-transform: uppercase;
+      background-image: linear-gradient(120deg,
+          transparent 0%,
+          transparent 50%,
+          $color-white 50%); // Adds a hover effect with a background gradient.
+      background-size: 220%;
+      transition: all 0.4s;
+
+      span {
+        margin-right: 1.5rem; // Adds spacing for the number before the link.
+        display: inline-block;
+      }
+    }
+
+    &:hover,
+    &:active {
+      background-position: 100%; // Changes the gradient position on hover.
+      color: $color-primary; // Changes text color on hover.
+      transform: translateX(1rem); // Moves the link slightly to the right on hover.
+    }
+  }
+
+  //FUNCTIONALITY
+  &__checkbox:checked~&__background {
+    transform: scale(80); // Expands the circular background when the menu is opened.
+  }
+
+  &__checkbox:checked~&__nav {
+    opacity: 1; // Makes the navigation menu visible.
+    width: 100%; // Expands the menu to full screen width.
+  }
+
+  //ICON
+  &__icon {
+    position: relative;
+    margin-top: 3.5rem;
+
+    &,
+    &::before,
+    &::after {
+      width: 3rem;
+      height: 2px;
+      background-color: $color-grey-dark-3;
+      display: inline-block;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      transition: all 0.2s;
+    }
+
+    &::before {
+      top: -0.8rem; // Position for the top line.
+    }
+
+    &::after {
+      top: 0.8rem; // Position for the bottom line.
+    }
+  }
+
+  &__button:hover &__icon::before {
+    top: -1rem; // Moves the top line slightly on hover.
+  }
+
+  &__button:hover &__icon::after {
+    top: 1rem; // Moves the bottom line slightly on hover.
+  }
+
+  &__checkbox:checked+&__button &__icon {
+    background-color: transparent; // Hides the middle line when the menu is opened.
+  }
+
+  &__checkbox:checked+&__button &__icon::before {
+    top: 0;
+    transform: rotate(135deg); // Rotates the top line into a cross shape.
+  }
+
+  &__checkbox:checked+&__button &__icon::after {
+    top: 0;
+    transform: rotate(-135deg); // Rotates the bottom line into a cross shape.
+  }
+}

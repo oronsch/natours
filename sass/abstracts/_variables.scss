@@ -1,0 +1,34 @@
+// **Primary Colors**
+$color-primary: #55c57a;          // Primary brand color (main green shade).
+$color-primary-light: #7ed56f;   // Lighter shade of the primary color.
+$color-primary-dark: #28b485;    // Darker shade of the primary color.
+
+// **Secondary Colors**
+$color-secondary-light: #ffb900; // Light orange, used for secondary accents.
+$color-secondary-dark: #ff7730;  // Darker shade of the secondary color, adds contrast.
+
+// **Tertiary Colors**
+$color-tertiary-light: #2998ff;  // Light blue, used for additional accents.
+$color-tertiary-dark: #5643fa;   // Deep purple for tertiary design elements.
+
+// **Neutral Colors (Grey scale)**
+$color-grey-light-1: #f7f7f7;    // Very light grey, often used for backgrounds.
+$color-grey-light-2: #eee;       // Slightly darker grey for subtle borders or cards.
+$color-grey-dark: #777;          // Medium grey for text or icons.
+$color-grey-dark-2: #999;        // Lighter dark grey, often used for secondary text.
+$color-grey-dark-3: #333;        // Very dark grey, used for primary text or contrast elements.
+
+// **Basic Colors**
+$color-white: #fff;              // Pure white, used for text or backgrounds.
+$color-black: #000;              // Pure black, used sparingly for high contrast.
+
+// **Default Font Size**
+$default-font-size: 1.6rem;      // Sets the base font size (1rem = 16px). This ensures scalable typography throughout the design.
+
+// **Grid Width**
+$grid-width: 114rem;             // Maximum width of the content grid (114rem = 1140px with default font size).
+
+// **Gutters**
+$gutter-vertical: 8rem;          // Vertical space between grid rows.
+$gutter-vertical-small: 6rem;    // Reduced vertical spacing for smaller layouts or elements.
+$gutter-horizontal: 6rem;        // Horizontal space between grid columns.

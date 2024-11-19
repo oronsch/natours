@@ -1,0 +1,105 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+
+.section-about {
+  background-color: $color-grey-light-1; // Light grey background for contrast.
+  padding: 25rem 0; // Vertical padding for spacious design.
+  margin-top: -20vh; // Pulls the section upwards by 20% of the viewport height.
+
+  @include respond(tab-port) {
+    padding: 20rem 0; // Reduces padding for tablet portrait screens.
+  }
+ 
+  @include respond(tab-port) {
+   margin-top: -10rem;
+  }
+}
+
+.section-features {
+  padding: 20rem 0;
+  background-image: linear-gradient(to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)),
+    url(../img/nat-4.jpg); // Adds a gradient overlay over a background image.
+  background-size: cover; // Ensures the background covers the section.
+  transform: skewY(-7deg); // Tilts the entire section for a dynamic look.
+  margin-top: -10rem; // Pulls the section upwards slightly.
+
+  &>* {
+    transform: skewY(7deg); // Corrects the tilt for child elements.
+  }
+
+  @include respond(tab-port) {
+    padding: 10rem 0; // Reduces padding for tablet portrait screens.
+  }
+}
+
+.section-tours {
+  background-color: $color-grey-light-1; // Light grey background.
+  padding: 25rem 0 15rem 0; // Adds more top padding than bottom padding.
+  margin-top: -10rem; // Pulls the section upwards slightly.
+
+  @include respond(tab-port) {
+    padding: 20rem 0 10rem 0; // Reduces padding for tablet portrait screens.
+  }
+}
+
+.section-stories {
+  position: relative; // Enables positioning of child elements relative to this section.
+  padding: 15rem 0; // Adds vertical padding.
+
+  @include respond(tab-port) {
+    padding: 10rem 0; // Reduces padding for tablet portrait screens.
+  }
+}
+
+.section-book {
+  padding: 15rem 0;
+  background-image: linear-gradient(to right bottom,
+      $color-primary-light,
+      $color-primary-dark ); // Adds a gradient background.
+
+  @include respond(tab-port) {
+    padding: 10rem 0; // Reduces padding for tablet portrait screens.
+  }
+}
+
+.book {
+  background-image: linear-gradient(105deg,
+      rgba($color-white, 0.9) 0%,
+      rgba($color-white, 0.9) 50%,
+      transparent 50%),
+    url(../img/nat-10.jpg); // Combines a gradient with a background image.
+  background-size: 100%; // Ensures the background image fits the container.
+  border-radius: 3px; // Slightly rounds the corners.
+  box-shadow: 0 1.5rem 4rem rgba($color-black, 0.2); // Adds a soft shadow for depth.
+
+  @include respond(tab-land) {
+    background-image: linear-gradient(105deg,
+        rgba($color-white, 0.9) 0%,
+        rgba($color-white, 0.9) 65%,
+        transparent 65%),
+      url(../img/nat-10.jpg); // Adjusts gradient proportions for landscape tablets.
+    background-size: cover; // Ensures the image covers the container.
+  }
+
+  @include respond(tab-port) {
+    background-image: linear-gradient(to right,
+        rgba($color-white, 0.9) 0%,
+        rgba($color-white, 0.9) 100%),
+      url(../img/nat-10.jpg); // Adjusts the gradient direction for portrait tablets.
+  }
+
+  &__form {
+    width: 50%; // Sets the form width to half of the parent.
+    padding: 6rem; // Adds internal spacing.
+
+    @include respond(tab-land) {
+      width: 65%; // Expands the form width for landscape tablets.
+    }
+
+    @include respond(tab-port) {
+      width: 100%; // Expands the form to full width for portrait tablets.
+    }
+  }
+}

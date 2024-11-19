@@ -1,0 +1,60 @@
+// **Clearfix Mixin**
+// This mixin is used to clear floats in CSS. It ensures that a parent element containing floated child elements properly wraps its children.
+@mixin clearfix {
+    &::after {
+        content: "";             // Creates a pseudo-element after the element.
+        display: table;          // Ensures the pseudo-element is block-level and establishes a block formatting context.
+        clear: both;             // Clears any floats applied to child elements.
+    }
+}
+
+// **Absolute Centering Mixin**
+// This mixin is used to absolutely center an element both horizontally and vertically within a containing element.
+@mixin absCenter {
+    position: absolute;          // The element is positioned relative to the nearest positioned ancestor.
+    top: 50%;                    // Moves the element 50% down from the top of the container.
+    left: 50%;                   // Moves the element 50% from the left of the container.
+    transform: translate(-50%, -50%); // Offsets the element by half its width and height to center it perfectly.
+}
+
+// **Media Query Manager**
+/*
+   A responsive design system for managing breakpoints.
+   - 0 - 600px: Phone
+   - 600 - 900px: Tablet portrait (tab-port)
+   - 900 - 1200px: Tablet landscape (tab-land)
+   - 1200 - 1800px: Normal styles (default styles apply here).
+   - 1800px and above: Big desktop (big-desktop).
+
+   The mixin simplifies adding media queries with semantic names for breakpoints.
+
+   - `1em = 16px` assumption is used to convert pixel-based widths into `em` units for scalability.
+*/
+
+@mixin respond($breakpoint) {
+    // Define breakpoints as semantic arguments.
+    @if $breakpoint == phone {
+        // For screens up to 600px (37.5em)
+        @media only screen and (max-width: 37.5em) { 
+            @content; // Inject the content wrapped in this media query.
+        }
+    }
+    @if $breakpoint == tab-port {
+        // For screens up to 900px (56.25em)
+        @media only screen and (max-width: 56.25em) {
+            @content;
+        }
+    }
+    @if $breakpoint == tab-land {
+        // For screens up to 1200px (75em)
+        @media only screen and (max-width: 75em) {
+            @content;
+        }
+    }
+    @if $breakpoint == big-desktop {
+        // For screens larger than 1800px (112.5em)
+        @media only screen and (min-width: 112.5em) {
+            @content;
+        }
+    }
+}

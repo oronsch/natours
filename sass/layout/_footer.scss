@@ -1,0 +1,82 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+
+.footer {
+  background-color: $color-grey-dark-3; // Sets a dark grey background for the footer.
+  padding: 10rem 0; // Adds vertical spacing inside the footer.
+  font-size: 1.4rem; // Sets the base font size for text in the footer.
+  color: $color-grey-light-1; // Uses a light grey color for text.
+
+  @include respond(tab-port) {
+    padding: 8rem 0; // Reduces padding on smaller screens for better fit.
+  }
+
+  &__logo-box {
+    text-align: center; // Centers the logo horizontally.
+    margin-bottom: 8rem; // Adds spacing below the logo.
+
+    @include respond(tab-port) {
+      margin-bottom: 6rem; // Reduces spacing on smaller screens.
+    }
+  }
+
+  &__logo {
+    width: 15rem; // Sets a fixed width for the logo.
+    height: auto; // Maintains the aspect ratio of the logo.
+  }
+
+  &__navigation {
+    border-top: 1px solid $color-grey-dark; // Adds a subtle border on top of the navigation section.
+    padding-top: 2rem; // Adds spacing above the navigation items.
+    display: inline-block; // Ensures navigation elements are displayed inline.
+
+    @include respond(tab-port) {
+      width: 100%; // Expands the navigation to full width on smaller screens.
+      text-align: center; // Centers the navigation text.
+    }
+  }
+
+  &__list {
+    list-style: none; // Removes default list styling.
+  }
+
+  &__item {
+    display: inline-block; // Displays navigation items inline.
+
+    &:not(:last-child) {
+      margin-right: 1.5rem; // Adds spacing between navigation items, except the last one.
+    }
+  }
+
+  &__link {
+
+    &:link,
+    &:visited {
+      color: $color-grey-light-1; // Sets the default link color to light grey.
+      background-color: $color-grey-dark-3; // Ensures the background matches the footer.
+      text-decoration: none; // Removes the underline from links.
+      text-transform: uppercase; // Converts text to uppercase for emphasis.
+      display: inline-block; // Ensures links behave like inline-block elements.
+      transition: all 0.2s; // Smooth transitions for hover effects.
+    }
+
+    &:hover,
+    &:active {
+      color: $color-primary; // Changes the link color to the primary color on hover/active.
+      box-shadow: 0 1rem 2rem rgba($color-black, 0.4); // Adds a shadow for emphasis.
+      transform: rotate(5deg) scale(1.3); // Tilts and enlarges the link for interactivity.
+    }
+  }
+
+  &__copyright {
+    border-top: 1px solid $color-grey-dark; // Adds a subtle border above the copyright text.
+    padding-top: 2rem; // Adds spacing above the copyright text.
+    width: 80%; // Restricts the width to 80% for better alignment.
+    float: right; // Aligns the copyright section to the right.
+
+    @include respond(tab-port) {
+      width: 100%; // Expands the section to full width on smaller screens.
+      float: none; // Removes the float for proper alignment.
+    }
+  }
+}

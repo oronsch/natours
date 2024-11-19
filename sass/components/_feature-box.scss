@@ -1,0 +1,35 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+
+.feature-box {
+  background-color: rgba($color-white, 0.8); // Semi-transparent white background for a soft look.
+  font-size: 1.5rem; // Sets a base font size for the text inside the feature box.
+  padding: 2.5rem; // Adds padding inside the box.
+  text-align: center; // Centers the content horizontally.
+  border-radius: 3px; // Rounds the corners slightly.
+  box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15); // Adds a soft shadow for depth.
+  transition: transform 0.3s; // Enables smooth animation on hover.
+
+  @include respond(tab-port) {
+    padding: 2rem; // Reduces padding on tablet portrait screens.
+  }
+
+  &__icon {
+    font-size: 6rem; // Large font size for the icon to make it prominent.
+    margin-bottom: 0.5rem; // Adds spacing below the icon.
+    display: inline-block; // Ensures the icon aligns properly.
+    background-image: linear-gradient(to right,
+        $color-primary-light,
+        $color-primary-dark ); // Applies a gradient to the icon.
+    background-clip: text; // Clips the gradient to the text (icon).
+    color: transparent; // Makes the background gradient visible instead of the text color.
+
+    @include respond(tab-port) {
+      margin-bottom: 0; // Removes the bottom margin on tablet portrait screens.
+    }
+  }
+
+    &:hover {
+      transform: translateY(-1.5rem) scale(1.03); // Moves the box upwards and slightly enlarges it on hover.
+    }
+}

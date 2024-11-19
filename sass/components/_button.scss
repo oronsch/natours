@@ -1,0 +1,106 @@
+@use "../abstracts/variables" as *;
+
+.btn {
+  &,
+  &:link,
+  &:visited {
+    text-transform: uppercase;             // Converts text to uppercase.
+    text-decoration: none;                // Removes underline for links.
+    padding: 1.5rem 4rem;                 // Adds vertical and horizontal padding.
+    display: inline-block;                // Makes the button behave like an inline-block element.
+    border-radius: 10rem;                 // Fully rounded corners.
+    transition: all 0.2s;                 // Smooth transition for hover and other states.
+    position: relative;                   // Positions pseudo-elements relative to the button.
+    font-size: $default-font-size;        // Uses the default font size variable.
+
+    // Change for <button> elements (not just links).
+    border: none;                         // Removes the default border.
+    cursor: pointer;                      // Changes the cursor to a pointer.
+  }
+
+  // **Hover Effect**
+  &:hover {
+    transform: translateY(-3px);          // Moves the button slightly upwards.
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2); // Adds a shadow for a lifted effect.
+
+    &::after {                            // Pseudo-element hover effect.
+      transform: scaleX(1.4) scaleY(1.6); // Enlarges the pseudo-element.
+      opacity: 0;                         // Fades out the pseudo-element.
+    }
+  }
+
+  // **Active and Focus States**
+  &:active,
+  &:focus {
+    outline: none;                        // Removes the default focus outline.
+    transform: translateY(-1px);          // Slightly less elevation for active state.
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2); // Reduced shadow.
+  }
+
+  // **White Button Modifier**
+  &--white {
+    background-color: $color-white;       // White background color.
+    color: $color-grey-dark;              // Dark grey text for contrast.
+
+    &::after {
+      background-color: $color-white;     // Ensures pseudo-element matches the button.
+    }
+  }
+
+  // **Green Button Modifier**
+  &--green {
+    background-color: $color-primary;     // Primary brand color as background.
+    color: $color-white;                  // White text for contrast.
+
+    &::after {
+      background-color: $color-primary;   // Matches the button background color.
+    }
+  }
+
+  // **Pseudo-element Styling**
+  &::after {
+    content: "";                          // Empty pseudo-element for effects.
+    display: inline-block;                // Ensures the pseudo-element is inline-block.
+    height: 100%;                         // Matches the button's height.
+    width: 100%;                          // Matches the button's width.
+    border-radius: 10rem;                 // Fully rounded corners for the pseudo-element.
+    position: absolute;                   // Positions the pseudo-element relative to the button.
+    top: 0;                               // Aligns to the top of the button.
+    left: 0;                              // Aligns to the left of the button.
+    z-index: -1;                          // Places the pseudo-element behind the button.
+    transition: all 0.4s;                 // Smooth transition for hover/active effects.
+  }
+
+  // **Animated Button Modifier**
+  &--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s; // Slide-in animation from the bottom.
+    animation-fill-mode: backwards;             // Ensures the animation starts from its initial position.
+  }
+}
+
+.btn-text {
+  &:link,
+  &:visited {
+    font-size: $default-font-size;        // Sets the font size.
+    color: $color-primary;               // Primary brand color for the text.
+    display: inline-block;               // Inline-block for better alignment.
+    text-decoration: none;               // Removes underline.
+    border-bottom: 1px solid $color-primary; // Subtle underline effect using border.
+    padding: 3px;                        // Adds slight padding around the text.
+    transition: all 0.2s;                // Smooth transition for hover/active states.
+  }
+
+  // **Hover Effect**
+  &:hover {
+    background-color: $color-primary;    // Fills the background with the primary color.
+    color: $color-white;                 // Changes text color to white.
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.15); // Subtle shadow effect.
+    transform: translateY(-2px);         // Slight lift on hover.
+  }
+
+  // **Active State**
+  &:active {
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.15); // Reduced shadow for active state.
+    transform: translateY(0);           // Resets the lift effect for active state.
+  }
+}

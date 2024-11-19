@@ -1,0 +1,68 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+
+.composition {
+  position: relative; // Establishes a containing block for absolutely positioned child elements.
+
+  &__photo {
+    width: 55%; // Sets the default width of the photos.
+    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.4); // Adds a shadow for depth.
+    border-radius: 2px; // Slightly rounds the corners of the photos.
+    position: absolute; // Allows precise positioning within the container.
+    z-index: 10; // Ensures the photos are above other elements.
+    transition: all 0.2s; // Smooth transitions for hover effects.
+    outline-offset: 2rem; // Creates space between the photo and its outline during hover.
+
+    @include respond(tab-port) {
+      float: left; // Aligns the photos to the left for smaller screens.
+      position: relative; // Changes to `relative` positioning for easier layout adjustments.
+      width: 33.33333333%; // Reduces the width to fit three photos in a row.
+      box-shadow: 0 1.5rem 3rem rgba($color-black, 0.2); // Reduces shadow intensity for smaller screens.
+    }
+
+    &--p1 {
+      left: 0; // Positions the first photo at the left edge.
+      top: -2rem; // Moves the photo slightly upwards.
+
+      @include respond(tab-port) {
+        top: 0; // Resets the top position for smaller screens.
+        transform: scale(1.2); // Enlarges the photo slightly.
+      }
+    }
+
+    &--p2 {
+      right: 0; // Positions the second photo at the right edge.
+      top: 2rem; // Moves the photo slightly downwards.
+
+      @include respond(tab-port) {
+        top: -1rem; // Adjusts the vertical position for smaller screens.
+        transform: scale(1.3); // Enlarges the photo more prominently.
+        z-index: 100; // Raises the stacking order for better visibility.
+      }
+    }
+
+    &--p3 {
+      left: 20%; // Positions the third photo 20% from the left edge.
+      top: 10rem; // Moves the photo further down.
+
+      @include respond(tab-port) {
+        top: 1rem; // Adjusts the vertical position for smaller screens.
+        left: 0; // Aligns the photo to the left edge.
+        transform: scale(1.1); // Slightly enlarges the photo.
+      }
+    }
+
+    &__photo:hover {
+      outline: 1.5rem solid $color-primary; // Adds a bold outline in the primary color.
+      transform: scale(1.05) translateY(-0.5rem); // Enlarges and slightly lifts the hovered photo.
+      box-shadow: 0 2.5rem 4rem rgba($color-black, 0.5); // Enhances the shadow for emphasis.
+      z-index: 20; // Raises the stacking order to bring the photo to the front.
+    }
+  }
+
+  &:hover &__photo:not(:hover) {
+    transform: scale(0.95); // Slightly shrinks non-hovered photos for a focused effect.
+  }
+
+  //composition:hover composition__photo:not(:hover) {
+}
